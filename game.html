@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .game-container {
+            margin: 100px auto;
+            max-width: 400px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 50px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Guess the Number</h1>
+        <p class="message">Guess a number between 1 and 10:</p>
+        <input type="text" id="userGuess">
+        <button id="checkGuess">Check</button>
+        <p class="message" id="resultMessage"></p>
+    </div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+        const checkGuessButton = document.getElementById('checkGuess');
+        const userGuessInput = document.getElementById('userGuess');
+        const resultMessage = document.getElementById('resultMessage');
+
+        checkGuessButton.addEventListener('click', () => {
+            const userGuess = parseInt(userGuessInput.value);
+            if (userGuess === randomNumber) {
+                resultMessage.textContent = 'Congratulations! You guessed the correct number!';
+                resultMessage.style.color = 'green';
+                userGuessInput.disabled = true;
+                checkGuessButton.disabled = true;
+            } else {
+                resultMessage.textContent = 'Try again. Incorrect guess!';
+                resultMessage.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
